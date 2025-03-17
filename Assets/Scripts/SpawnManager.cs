@@ -19,6 +19,13 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
+        // ถ้าเกมจบแล้ว ให้หยุดการเกิดของสิ่งกีดขวาง
+        if (playerController.isGameOver)
+        {
+            CancelInvoke("Spawn");
+            return;
+        }
+        
         int randomIndex = Random.Range(0, obstaclePrefab.Length);
         Instantiate(obstaclePrefab[randomIndex], spawnPoint.position, obstaclePrefab[randomIndex].transform.rotation);
     }

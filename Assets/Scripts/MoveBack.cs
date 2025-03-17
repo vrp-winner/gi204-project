@@ -13,6 +13,11 @@ public class MoveBack : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        // ถ้าเกมยังไม่จบ ให้วัตถุเคลื่อนที่ไปข้างหลังหาผู้เล่น
+        if (playerController.isGameOver == false)
+        {
+            transform.Translate(Vector3.back * speed * Time.deltaTime);
+        }
+        
     }
 }
