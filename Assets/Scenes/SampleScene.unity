@@ -499,6 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756062432}
+  - component: {fileID: 1756062433}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -522,6 +523,24 @@ Transform:
   - {fileID: 1156624559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1756062433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756062431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f178516d70b9d034d830201bf234d2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1156624559}
+  obstaclePrefab:
+  - {fileID: 1541087048993130990, guid: 5c551554ca11e7b4c8943220f94d6997, type: 3}
+  - {fileID: 6382058731105290253, guid: 34c3c9676d95575479279dd5778cba10, type: 3}
+  startDelay: 0.1
+  repeatLate: 1
 --- !u!1001 &1851200682396317114
 PrefabInstance:
   m_ObjectHideFlags: 0
