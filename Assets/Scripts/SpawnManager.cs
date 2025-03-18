@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
     void Spawn()
     {
         // ถ้าเกมจบแล้ว ให้หยุดการเกิดของสิ่งกีดขวาง
-        if (playerController.isGameOver)
+        if (playerController.GetIsGameOver())
         {
             CancelInvoke("Spawn");
             return;

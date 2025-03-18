@@ -7,7 +7,12 @@ public class PlayerController : MonoBehaviour
     
     private InputAction moveAction;
     
-    public bool isGameOver = false; // เช็คว่าเกมจบหรือยัง
+    private bool isGameOver = false; // เช็คว่าเกมจบหรือยัง
+
+    public bool GetIsGameOver()
+    {
+        return isGameOver;
+    }
     
     void Awake()
     {
