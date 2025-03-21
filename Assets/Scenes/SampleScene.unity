@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -271,6 +272,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1417808130}
   offset: {x: 0, y: 2, z: -3.5}
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617ca70d5b8b2cb4a935e68f3164285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +595,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  isGameOver: 0
+--- !u!114 &1417808137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417808130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617ca70d5b8b2cb4a935e68f3164285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756062431
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +797,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1948898448689794038, guid: 35ac4e29a31a06a4095b5c2b82d11e65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1417808131}
+    - targetCorrespondingSourceObject: {fileID: 1948898448689794038, guid: 35ac4e29a31a06a4095b5c2b82d11e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1417808137}
   m_SourcePrefab: {fileID: 100100000, guid: 35ac4e29a31a06a4095b5c2b82d11e65, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Distance : MonoBehaviour
 {
-    int score = 0;
+    private int score;
+    
     private PlayerController player;
+    private bool gameFinish = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,12 +19,13 @@ public class Distance : MonoBehaviour
     {
         if (player.GetIsGameOver() == false)
         {
-            score++;
+            score = ((int)Time.time)*100;
         }
-
-        else
+        
+        if (player.GetIsGameOver() == true && !gameFinish)
         {
-            Debug.Log("Your Distance"+score);
+            Debug.Log("Distance: "+score);
+            gameFinish = true;
         }
     }
 }
