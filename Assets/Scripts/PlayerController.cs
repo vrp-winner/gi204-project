@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,10 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     
-    private InputAction moveAction;
+    private float currentSpeed;
+    
+    private bool isBoosted = false;
     
     private bool isGameOver = false; // เช็คว่าเกมจบหรือยัง
-
+    
+    private float boosterTimeRemaining = 0f;
+    
+    private InputAction moveAction;
+    
     public bool GetIsGameOver()
     {
         return isGameOver;
@@ -19,13 +26,28 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
     }
 
+    private void Start()
+    {
+        currentSpeed = speed;
+    }
+
     void Update()
     {
         // ถ้าเกมจบแล้ว ไม่ต้องให้ผู้เล่นขยับ
         if(isGameOver) return;
+
+        if (isBoosted)
+        {
+            boosterTimeRemaining -= Time.deltaTime;
+            if (boosterTimeRemaining <= 0)
+            {
+                DeactivateBooster();
+            }
+            
+        }
         
         float horizontalInput = moveAction.ReadValue<Vector2>().x;
-        transform.Translate(horizontalInput * speed * Time.deltaTime * Vector3.right);
+        transform.Translate(horizontalInput * currentSpeed * Time.deltaTime * Vector3.right);
         
         // จำกัดขอบเขตการเคลื่อนที่ของผู้เล่น
         float xRange = 4.5f; // ขอบเขตซ้าย-ขวา
@@ -47,5 +69,34 @@ public class PlayerController : MonoBehaviour
         {
             isGameOver = true;
         }
+    }
+
+    public void ActivateBooster(float boostSpeed, float duration)
+    {
+        currentSpeed = boostSpeed;
+        isBoosted = true;
+        boosterTimeRemaining = duration;
+        
+        MoveBack[] movingObjects = FindObjectsByType<MoveBack>(FindObjectsSortMode.None);
+        foreach (MoveBack obj in movingObjects)
+        {
+            obj.SetSpeed(boostSpeed);
+        }
+        
+        UIBoosterManager.Instance.ShowBooster(duration);
+    }
+
+    private void DeactivateBooster()
+    {
+        currentSpeed = speed;
+        isBoosted = false;
+        
+        MoveBack[] movingObjects = FindObjectsByType<MoveBack>(FindObjectsSortMode.None);
+        foreach (MoveBack obj in movingObjects)
+        {
+            obj.ResetSpeed();
+        }
+        
+        UIBoosterManager.Instance.HideBooster();
     }
 }
