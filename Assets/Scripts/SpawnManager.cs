@@ -5,6 +5,7 @@ public class SpawnManager : MonoBehaviour
     public Transform[] spawnPoint;
     public GameObject[] obstaclePrefab;
     public GameObject boosterPrefab;
+    public GameObject coinPrefab;
     
     public float startDelay = 0.1f;
     public float repeatLate = 1f;
@@ -27,10 +28,16 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
-        if (Random.value < 0.1f)
+        float randomValue = Random.value;
+        int spawnIndex = Random.Range(0, spawnPoint.Length);
+
+        if (randomValue < 0.1f)
         {
-            int spawnIndex = Random.Range(0, spawnPoint.Length);
             Instantiate(boosterPrefab, spawnPoint[spawnIndex].position, Quaternion.identity);
+        }
+        else if (randomValue < 0.3f)
+        {
+            Instantiate(coinPrefab, spawnPoint[spawnIndex].position, Quaternion.identity);
         }
         else
         {
@@ -48,7 +55,7 @@ public class SpawnManager : MonoBehaviour
                     
             // สุ่มเลือกอุปสรรคสำหรับตำแหน่งที่สอง
             int randomIndex2;
-            if (Random.value < 0.1f) // มีโอกาส 10% ที่จะใช้สิ่งกีดขวางเดียวกันกับตำแหน่งแรก
+            if (randomValue < 0.1f) // มีโอกาส 10% ที่จะใช้สิ่งกีดขวางเดียวกันกับตำแหน่งแรก
             {
                 randomIndex2 = randomIndex1;
             }
@@ -58,10 +65,10 @@ public class SpawnManager : MonoBehaviour
             }
                     
             // สร้างสิ่งกีดขวางตัวแรกที่ตำแหน่งแรก
-            Instantiate(obstaclePrefab[randomIndex1], spawnPoint[firstSpawnIndex].position, obstaclePrefab[randomIndex1].transform.rotation);
+            Instantiate(obstaclePrefab[randomIndex1], spawnPoint[firstSpawnIndex].position, Quaternion.identity);
                     
             // สร้างสิ่งกีดขวางตัวที่สองที่ตำแหน่งที่สอง
-            Instantiate(obstaclePrefab[randomIndex2], spawnPoint[secondSpawnIndex].position, obstaclePrefab[randomIndex2].transform.rotation);
+            Instantiate(obstaclePrefab[randomIndex2], spawnPoint[secondSpawnIndex].position, Quaternion.identity);
         }
     }
 }

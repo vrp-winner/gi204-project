@@ -1,22 +1,19 @@
 using TMPro;
 using UnityEngine;
 
-public class coinCollection : MonoBehaviour
+public class CoinCollection : MonoBehaviour
 {
-    private int Coin = 0;
+    private int coin = 0;
 
     public TextMeshProUGUI coinText;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Coin")
+        if (other.CompareTag("Coin")) // เปลี่ยนมาใช้ Compare Tag แทนจะดีกว่า transform.tag
         {
-            Coin++;
-            coinText.text = "Coin: " + Coin.ToString();
-            Debug.Log(Coin);
+            coin++;
+            coinText.text = "Coin: " + coin;
             Destroy(other.gameObject);
-
-
         }
     }
 }
