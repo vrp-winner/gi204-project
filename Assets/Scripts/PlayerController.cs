@@ -99,4 +99,9 @@ public class PlayerController : MonoBehaviour
         
         UIBoosterManager.Instance.HideBooster();
     }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
 }

@@ -1,31 +1,34 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class Distance : MonoBehaviour
 {
-    private int score;
+    private float score; // เปลี่ยนไปใช้ float เพื่อรับค่า current speed ใน PlayerController
     
-    private PlayerController player;
-    private bool gameFinish = false;
+    private PlayerController playerController;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public TextMeshProUGUI distanceText;
+    
+    //private bool gameFinish = false;
+    
     void Start()
     {
-        player = GameObject.Find("Car").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Car").GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (player.GetIsGameOver() == false)
+        if (!playerController.GetIsGameOver())
         {
-            score = ((int)Time.time)*100;
+            score += playerController.GetCurrentSpeed() * Time.deltaTime; // เปลี่ยนไปใช้ Time.deltaTime จะเสถียรกว่า
+            distanceText.text = "Distance: " + Mathf.RoundToInt(score); // ปัด float เป็น int
         }
         
-        if (player.GetIsGameOver() == true && !gameFinish)
+        /*if (player.GetIsGameOver() == true && !gameFinish)
         {
             Debug.Log("Distance: "+score);
             gameFinish = true;
-        }
+        }*/
     }
 }
