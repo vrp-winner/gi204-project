@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+
+    public float onIceSpeed;
     
-    private float currentSpeed;
+    public float currentSpeed;
     
     private bool isBoosted = false;
     
@@ -45,6 +48,8 @@ public class PlayerController : MonoBehaviour
             
         }
         
+        
+
         float horizontalInput = moveAction.ReadValue<Vector2>().x;
         transform.Translate(horizontalInput * currentSpeed * Time.deltaTime * Vector3.right);
         
@@ -69,6 +74,19 @@ public class PlayerController : MonoBehaviour
             isGameOver = true;
             UIBoosterManager.Instance.HideBooster();
         }
+    }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ice"))
+        {
+            currentSpeed = onIceSpeed;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        currentSpeed = speed;
     }
 
     public void ActivateBooster(float boostSpeed, float duration)
