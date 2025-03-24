@@ -23,11 +23,5 @@ public class Distance : MonoBehaviour
             score += playerController.GetCurrentSpeed() * Time.deltaTime; // เปลี่ยนไปใช้ Time.deltaTime จะเสถียรกว่า
             distanceText.text = "Distance: " + Mathf.RoundToInt(score); // ปัด float เป็น int
         }
-        
-        /*if (player.GetIsGameOver() == true && !gameFinish)
-        {
-            Debug.Log("Distance: "+score);
-            gameFinish = true;
-        }*/
     }
 }

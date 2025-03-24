@@ -9,7 +9,7 @@ public class CoinCollection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Coin")) // เปลี่ยนมาใช้ Compare Tag แทนจะดีกว่า transform.tag
+        if (other.CompareTag("Coin"))
         {
             coin++;
             coinText.text = "Coin: " + coin;
