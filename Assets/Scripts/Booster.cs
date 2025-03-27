@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Booster : MonoBehaviour
 {
-    public float boostSpeed = 20f;
+    public float boostForce = 10f;
     public float boostDuration = 5f;
     
     private void OnTriggerEnter(Collider other)
@@ -12,7 +12,7 @@ public class Booster : MonoBehaviour
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                playerController.ActivateBooster(boostSpeed, boostDuration);
+                playerController.ActivateBooster(boostForce, boostDuration);
                 Destroy(gameObject);
             }
         }

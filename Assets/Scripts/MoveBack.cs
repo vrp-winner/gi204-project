@@ -3,7 +3,9 @@ using UnityEngine;
 public class MoveBack : MonoBehaviour
 {
     public float speed = 10f;
+    public float mass = 1f;
     private float currentSpeed;
+    private float baseSpeed;
     
     private PlayerController playerController; // อ้างอิงถึง PlayerController เพื่อตรวจสอบว่าเกมจบหรือยัง
     void Start()
@@ -11,6 +13,7 @@ public class MoveBack : MonoBehaviour
         // ค้นหา "Car" PlayerController มาใช้
         playerController = GameObject.Find("Car").GetComponent<PlayerController>();
         currentSpeed = speed;
+        baseSpeed = speed;
     }
 
     void Update()
@@ -20,6 +23,16 @@ public class MoveBack : MonoBehaviour
         {
             transform.Translate(Vector3.back * currentSpeed * Time.deltaTime);
         }
+    }
+
+    public float GetMass()
+    {
+        return mass;
+    }
+
+    public float GetBaseSpeed()
+    {
+        return baseSpeed;
     }
 
     public void SetSpeed(float newSpeed)

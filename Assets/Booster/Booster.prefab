@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6212077444998195195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fef8febd8968245a18662831db3a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostSpeed: 20
+  boostForce: 10
   boostDuration: 5
 --- !u!114 &-1063806510778138977
 MonoBehaviour:
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  mass: 1
 --- !u!1001 &3450750012683483913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cee64f67b1d88c24a8241a53a66eef23, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cee64f67b1d88c24a8241a53a66eef23, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

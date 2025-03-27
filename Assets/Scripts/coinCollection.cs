@@ -22,7 +22,6 @@ public class CoinCollection : MonoBehaviour
                 coinRB.angularVelocity = angularVelocity;
                 coinRB.AddForce(linearVelocity, ForceMode.Impulse);
             }
-                
             Destroy(other.gameObject, 1f);
         }
     }
