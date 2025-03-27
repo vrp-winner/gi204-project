@@ -5,12 +5,14 @@ public class Distance : MonoBehaviour
 {
     private float score;
     
+    private PlayerController playerController;
+    
     public TextMeshProUGUI distanceText;
-    private PlayerController playerController; // Reference ไปที่ PlayerController
+    
+    //private bool gameFinish = false;
     
     void Start()
     {
-        // ค้นหา "Car" PlayerController มาใช้
         playerController = GameObject.Find("Car").GetComponent<PlayerController>();
     }
 
@@ -18,8 +20,8 @@ public class Distance : MonoBehaviour
     {
         if (!playerController.GetIsGameOver())
         {
-            score += playerController.GetCurrentSpeed() * Time.deltaTime; // คำนวณระยะทางจากความเร็วปัจจุบัน x เวลา
-            distanceText.text = "Distance\n" + Mathf.RoundToInt(score); // แสดงระยะทางแบบจำนวนเต็ม (ปัดเศษด้วย Mathf.RoundToInt)
+            score += playerController.GetCurrentSpeed() * Time.deltaTime;
+            distanceText.text = "Distance\n" + Mathf.RoundToInt(score);
         }
     }
 }
