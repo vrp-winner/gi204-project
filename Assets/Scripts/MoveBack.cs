@@ -7,7 +7,7 @@ public class MoveBack : MonoBehaviour
     private float currentSpeed;
     private float baseSpeed;
     
-    private PlayerController playerController; // อ้างอิงถึง PlayerController เพื่อตรวจสอบว่าเกมจบหรือยัง
+    private PlayerController playerController; // Reference ไปที่ PlayerController
     void Start()
     {
         // ค้นหา "Car" PlayerController มาใช้
@@ -19,7 +19,7 @@ public class MoveBack : MonoBehaviour
     void Update()
     {
         // ถ้าเกมยังไม่จบ ให้วัตถุเคลื่อนที่ไปข้างหลังหาผู้เล่น
-        if (playerController.GetIsGameOver() == false)
+        if (!playerController.GetIsGameOver())
         {
             transform.Translate(Vector3.back * currentSpeed * Time.deltaTime);
         }

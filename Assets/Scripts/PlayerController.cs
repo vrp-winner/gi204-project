@@ -4,17 +4,15 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-
-    public float onIceSpeed;
+    public float mass = 1f;
     
-    public float currentSpeed;
-    
-    private bool isBoosted = false;
-    
-    private bool isGameOver = false; // เช็คว่าเกมจบหรือยัง
-    
+    private float currentSpeed;
+    private float currentMass;
     private float boosterTimeRemaining = 0f;
+    private bool isBoosted = false;
+    private bool isGameOver = false;
     
+    private Rigidbody rb;
     private InputAction moveAction;
     
     public bool GetIsGameOver()
@@ -25,11 +23,13 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
         currentSpeed = speed;
+        currentMass = mass;
     }
 
     void Update()
@@ -44,15 +44,11 @@ public class PlayerController : MonoBehaviour
             {
                 DeactivateBooster();
             }
-            
         }
-        
-        
-
         float horizontalInput = moveAction.ReadValue<Vector2>().x;
         transform.Translate(horizontalInput * currentSpeed * Time.deltaTime * Vector3.right);
         
-        // จำกัดขอบเขตการเคลื่อนที่ของผู้เล่น
+        // จำกัดขอบเขตการเคลื่อนที่ของผู้เล่น (ไม่ให้ออกนอกจอ)
         float xRange = 4.5f; // ขอบเขตซ้าย-ขวา
         if (transform.position.x < -xRange)
         {
@@ -74,32 +70,22 @@ public class PlayerController : MonoBehaviour
             UIBoosterManager.Instance.HideBooster();
         }
     }
-    
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ice"))
-        {
-            currentSpeed = onIceSpeed;
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
+    public void ActivateBooster(float boostForce, float duration)
     {
-        currentSpeed = speed;
-    }
-
-    public void ActivateBooster(float boostSpeed, float duration)
-    {
-        currentSpeed = boostSpeed;
+        // คำนวณความเร็วใหม่จากแรง Boost และมวล (F=ma)
+        float acceleration = boostForce / currentMass;
+        currentSpeed = speed + acceleration;
         isBoosted = true;
         boosterTimeRemaining = duration;
         
+        // หาวัตถุทั้งหมดที่มีสคริปต์ MoveBack และเพิ่มความเร็วพวกนั้นด้วย
         MoveBack[] movingObjects = FindObjectsByType<MoveBack>(FindObjectsSortMode.None);
         foreach (MoveBack obj in movingObjects)
         {
-            obj.SetSpeed(boostSpeed);
+            float objAcc = boostForce / obj.GetMass();
+            obj.SetSpeed(obj.GetBaseSpeed() + objAcc);
         }
-        
         UIBoosterManager.Instance.ShowBooster(duration);
     }
 
