@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     public float startDelay = 0.1f;
     public float repeatLate = 1f;
     
-    private PlayerController playerController; // อ้างอิงถึง PlayerController เพื่อตรวจสอบว่าเกมจบหรือยัง
+    private PlayerController playerController; // Reference ไปที่ PlayerController
     void Start()
     {
         // ค้นหา "Car" PlayerController มาใช้
@@ -21,27 +21,28 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
-        // ถ้าเกมจบแล้ว ให้หยุดการเกิดของสิ่งกีดขวาง
+        // ถ้าเกมจบแล้ว ให้หยุด Spawn
         if (playerController.GetIsGameOver())
         {
             CancelInvoke("Spawn");
             return;
         }
-
+        
+        // สุ่ม Spawn (Boost, เหรียญ, หรือสิ่งกีดขวาง)
         float randomValue = Random.value;
         int spawnIndex = Random.Range(0, spawnPoint.Length);
-
-        if (randomValue < 0.1f)
+        
+        if (randomValue < 0.1f) // (โอกาส Spawn Booster) 
         {
             Instantiate(boosterPrefab, spawnPoint[spawnIndex].position, Quaternion.identity);
         }
-        else if (randomValue < 0.3f)
+        else if (randomValue < 0.3f) // (โอกาส Spawn Coin) 
         {
             Instantiate(coinPrefab, spawnPoint[spawnIndex].position, Quaternion.identity);
         }
-        else
+        else // (โอกาส Spawn Obstacle)
         {
-            // เลือกตำแหน่งเกิดสิ่งกีดขวาง 2 จุดแบบสุ่ม (จากทั้งหมด 3 จุด) และต้องไม่ซ้ำกัน
+            // สุ่มจุด Spawn 2 จุดที่ไม่ซ้ำกัน
             int firstSpawnIndex = Random.Range(0, spawnPoint.Length);
             int secondSpawnIndex;
                     
@@ -50,24 +51,23 @@ public class SpawnManager : MonoBehaviour
                 secondSpawnIndex = Random.Range(0, spawnPoint.Length);
             } while (secondSpawnIndex == firstSpawnIndex); // ห้ามซ้ำกับจุดแรก
                     
-            // สุ่มเลือกอุปสรรคสำหรับตำแหน่งแรก
+            // สุ่มเลือก Prefab ของ Obstacle
             int randomIndex1 = Random.Range(0, obstaclePrefab.Length);
                     
-            // สุ่มเลือกอุปสรรคสำหรับตำแหน่งที่สอง
             int randomIndex2;
-            if (randomValue < 0.1f) // มีโอกาส 10% ที่จะใช้สิ่งกีดขวางเดียวกันกับตำแหน่งแรก
+            if (randomValue < 0.1f) // (โอกาสใช้ Prefab เดียวกันทั้งคู่)
             {
                 randomIndex2 = randomIndex1;
             }
-            else // อีก 90% ของกรณี สุ่มสิ่งกีดขวางใหม่
+            else
             {
                 randomIndex2 = Random.Range(0, obstaclePrefab.Length);
             }
                     
-            // สร้างสิ่งกีดขวางตัวแรกที่ตำแหน่งแรก
+            // สร้าง Obstacle ที่จุดแรก
             Instantiate(obstaclePrefab[randomIndex1], spawnPoint[firstSpawnIndex].position, Quaternion.identity);
                     
-            // สร้างสิ่งกีดขวางตัวที่สองที่ตำแหน่งที่สอง
+            // สร้าง Obstacle ที่จุดสอง
             Instantiate(obstaclePrefab[randomIndex2], spawnPoint[secondSpawnIndex].position, Quaternion.identity);
         }
     }

@@ -5,6 +5,7 @@ public class RepeatRoad : MonoBehaviour
     private Vector3 startPosition;
 
     private float length;
+    
     void Start()
     {
         startPosition = transform.position; // บันทึกตำแหน่งตอนเริ่มเกม
