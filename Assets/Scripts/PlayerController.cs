@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class PlayerController : MonoBehaviour
     
     private InputAction moveAction;
     
+    public GameObject gameOverScreen;
+    public GameObject mainMenu;
+    public GameObject coinDisplay;
+    public GameObject distanceDisplay;
+    
+    
     public bool GetIsGameOver()
     {
         return isGameOver;
@@ -30,6 +37,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentSpeed = speed;
+        gameOverScreen.SetActive(false);
+        //mainMenu.SetActive(true);
+        //coinDisplay.SetActive(false);
+        //distanceDisplay.SetActive(false);
     }
 
     void Update()
@@ -72,6 +83,8 @@ public class PlayerController : MonoBehaviour
         {
             isGameOver = true;
             UIBoosterManager.Instance.HideBooster();
+            gameOverScreen.SetActive(true);
+            
         }
     }
     

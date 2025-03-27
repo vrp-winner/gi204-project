@@ -21,7 +21,7 @@ public class Distance : MonoBehaviour
         if (!playerController.GetIsGameOver())
         {
             score += playerController.GetCurrentSpeed() * Time.deltaTime;
-            distanceText.text = "Distance: " + Mathf.RoundToInt(score);
+            distanceText.text = "Distance\n" + Mathf.RoundToInt(score);
         }
     }
 }
