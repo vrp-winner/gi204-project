@@ -6,8 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Coin
-  - Ice
-  - Road
+  - Booster
   layers:
   - Default
   - TransparentFX

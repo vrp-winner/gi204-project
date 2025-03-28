@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             isGameOver = true;
             UIBoosterManager.Instance.HideBooster();
+            GameManager.Instance.GameOver();
         }
     }
 
@@ -99,7 +100,6 @@ public class PlayerController : MonoBehaviour
         {
             obj.ResetSpeed();
         }
-        
         UIBoosterManager.Instance.HideBooster();
     }
 

@@ -19,7 +19,7 @@ public class MoveBack : MonoBehaviour
     void Update()
     {
         // ถ้าเกมยังไม่จบ ให้วัตถุเคลื่อนที่ไปข้างหลังหาผู้เล่น
-        if (playerController.GetIsGameOver() == false)
+        if (!playerController.GetIsGameOver())
         {
             transform.Translate(Vector3.back * currentSpeed * Time.deltaTime);
         }
