@@ -1894,10 +1894,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1660702737 Theethuch Rotchanawongchai \nSection 229H No. xx\nAI Model
+  m_text: "1660702737 Theethuch Rotchanawongchai \nSection 229H No. 14\nAI Model
     Generation & Editing\n\n1660708288 Vorapol Saengsumano \nSection 229H No. 36\nLead
     Programmer, Gameplay Logic & UI Design\n\n1660708601 Yotsaphon Aiem-oon\nSection
-    229H No. xx\nProgrammer, Build & Deployment to Itch.io"
+    229H No. 37\nProgrammer, Build & Deployment to Itch.io"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
