@@ -2563,7 +2563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 62.2}
+  m_AnchoredPosition: {x: -200, y: 62.19995}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549097361
@@ -3855,6 +3855,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8092975379979775585, guid: 615184d5eab708b4c9d1f39198687cfa, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: f8dce99d6b5e3f641bce9e7c128fe6fb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3922,6 +3926,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5642462661481769763, guid: 35ac4e29a31a06a4095b5c2b82d11e65, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7477151497120771442, guid: 35ac4e29a31a06a4095b5c2b82d11e65, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3941,7 +3949,7 @@ PrefabInstance:
     - target: {fileID: 7520330466614956095, guid: 35ac4e29a31a06a4095b5c2b82d11e65, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: d42a1a1986b7b594186da0ff06702d0e, type: 2}
+      objectReference: {fileID: 13400000, guid: 949588fd93fac07468c89c26c91bd1ea, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
