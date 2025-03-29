@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour
     public Button creditButton;
     public Button backButton;
     
-    private PlayerController playerController;
+    private PlayerController playerController; // Reference ไปที่ PlayerController
 
     private void Awake()
     {
+        // (ถ้ามี Instance อยู่แล้วให้ทำลายตัวใหม่)
         if (Instance == null)
         {
             Instance = this;
@@ -30,14 +31,15 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        gameOverPanel.SetActive(false);
+        gameOverPanel.SetActive(false); // ซ่อน Game Over Panel ตอนเริ่มเกม
     }
 
     private void Start()
     {
+        // ค้นหา "Car" PlayerController มาใช้
         playerController = GameObject.Find("Car").GetComponent<PlayerController>();
         
-        MainMenu();
+        MainMenu(); // เริ่มเกมด้วย Main Menu
         
         startButton.onClick.AddListener(StartGame);
         homeButton.onClick.AddListener(Home);
@@ -52,8 +54,8 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         creditPanel.SetActive(false);
         
-        Time.timeScale = 0f;
-        playerController.enabled = false;
+        Time.timeScale = 0f; // หยุดเวลาในเกม
+        playerController.enabled = false; // ปิดการควบคุมผู้เล่น
     }
 
     public void StartGame()
@@ -63,19 +65,19 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         creditPanel.SetActive(false);
         
-        Time.timeScale = 1f;
-        playerController.enabled = true;
+        Time.timeScale = 1f; // เริ่มเวลาในเกม
+        playerController.enabled = true; // เปิดการควบคุมผู้เล่น
     }
 
     public void GameOver()
     {
         mainMenuPanel.SetActive(false);
         gamePanel.SetActive(true);
-        gameOverPanel.SetActive(true);
+        gameOverPanel.SetActive(true); // แสดง Game Over Panel
         creditPanel.SetActive(false);
         
-        Time.timeScale = 0f;
-        playerController.enabled = false;
+        Time.timeScale = 0f; // หยุดเวลาในเกม
+        playerController.enabled = false; // ปิดการควบคุมผู้เล่น
     }
 
     public void Home()
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour
         
         Time.timeScale = 1f;
         var activeScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(activeScene.name);
+        SceneManager.LoadScene(activeScene.name); // รีโหลดฉากปัจจุบัน
     }
 
     public void Credit()
@@ -95,9 +97,9 @@ public class GameManager : MonoBehaviour
         mainMenuPanel.SetActive(false);
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
-        creditPanel.SetActive(true);
+        creditPanel.SetActive(true); // แสดง Credit Panel
         
-        Time.timeScale = 0f;
-        playerController.enabled = false;
+        Time.timeScale = 0f; // หยุดเวลาในเกม
+        playerController.enabled = false; // ปิดการควบคุมผู้เล่น
     }
 }
